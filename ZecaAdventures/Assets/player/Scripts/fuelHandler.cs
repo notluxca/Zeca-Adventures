@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class fuelHandler : MonoBehaviour
 {
+    [SerializeField] bool useFuelSystem;
     [SerializeField] Slider slider;
+    
 
     public bool canDrive;
     private bool isDriving;
@@ -32,15 +34,18 @@ public class fuelHandler : MonoBehaviour
     }
 
     void ConsumeFuel(){
-        slider.value = fuel;
-        if(canDrive){
-            if(isDriving){
-                fuel -= fuelComsuptionRate * Time.deltaTime;
-            }
-            if(fuel <= 0){
-                canDrive = false;
-            }
+        if(useFuelSystem){
+            slider.value = fuel;
+            if(canDrive){
+                if(isDriving){
+                    fuel -= fuelComsuptionRate * Time.deltaTime;
+                }
+                if(fuel <= 0){
+                    canDrive = false;
+                }
         }        
+        }
+        
     }
 
 

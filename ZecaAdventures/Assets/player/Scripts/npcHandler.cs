@@ -25,22 +25,10 @@ public class npcHandler : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "npc"){
-            if(!carryingNpc){
-                carryingNpc = true;
-                npcOnCarry = other.gameObject;
-                getNpc(other.gameObject);
-            }
-        }
-        else if(other.gameObject.tag == "dropZone"){
-            dropNpc();
-        }
-    }
 
 
     private void carryNpc(GameObject npc){
-        
+            
             npc.transform.position = seatPosition.position + seatOffset;
         
     }
@@ -53,12 +41,27 @@ public class npcHandler : MonoBehaviour
 
     private void dropNpc(){
         // get npc inside the school
-        npcOnCarry.transform.position = dropPosition.transform.position;
-        // reset npc handler
-        carryingNpc = false;
+        if(carryingNpc){
+            npcOnCarry.transform.position = dropPosition.transform.position;
+            // reset npc handler
+            carryingNpc = false;
+        }
 
     }
 
+    // handle all collisions
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "npc"){
+            if(!carryingNpc){
+                carryingNpc = true;
+                npcOnCarry = other.gameObject;
+                getNpc(other.gameObject);
+            }
+        }
+        else if(other.gameObject.tag == "dropZone"){
+            dropNpc();
+        }
+    }
     
     
 }
