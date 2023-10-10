@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject enchente;
     [SerializeField] GameObject cameraSpot;
 
+    [SerializeField] GameObject whiteBackground;
+    [SerializeField] GameObject winText;
+
+
     [SerializeField] GameObject blackBackground;
     [SerializeField] GameObject gameOverText;
 
@@ -22,8 +26,15 @@ public class GameManager : MonoBehaviour
     public int npcsLeft;
 
     private void Start() {
-        
+        // StartCoroutine("winSequence"); // debug
     }
+
+    public void Win(){
+        Debug.Log("Game Won");
+        StartCoroutine("winSequence");
+    }
+
+
     public void GameOver()
     {
         if(gameIsOver==false)
@@ -45,7 +56,7 @@ public class GameManager : MonoBehaviour
         mainCamera.GetComponent<followPlayer>().smoothTime = 1;
         mainCamera.GetComponent<followPlayer>().target = cameraSpot.transform;
         mainCamera.GetComponent<Camera>().orthographicSize = 10;
-        
+
 
         //load game over pannel
         yield return new WaitForSeconds(10f);
@@ -55,11 +66,31 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(0);
 
-        // SceneManager.LoadScene("GameOver");
-        // fade image to black before game goes back to startScene
+    }
 
 
+        IEnumerator winSequence()
+        {
 
+        Destroy(FindObjectOfType<Timer>());
+        yield return new WaitForSeconds(.1f);
+        FindObjectOfType<Camera>().GetComponent<followPlayer>();
+        enchente.SetActive(true);
+
+        // move the camera to the center of map
+        mainCamera.GetComponent<followPlayer>().smoothTime = 1;
+        mainCamera.GetComponent<followPlayer>().target = cameraSpot.transform;
+        mainCamera.GetComponent<Camera>().orthographicSize = 10;
+
+
+        //load game over pannel
+        yield return new WaitForSeconds(10f);
+        whiteBackground.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        winText.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
+        // destroy timer script so game wont load lose sequence after the win
 
         }
 
