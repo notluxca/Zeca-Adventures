@@ -12,16 +12,16 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (remainingTime > 30)
+        if (remainingTime > 150)
         {
             remainingTime -= Time.deltaTime;
         }
-        else if (remainingTime <= 30 & remainingTime>10)
+        else if (remainingTime <= 150 & remainingTime>60)
         {
             timerText.color = Color.yellow;
             remainingTime -= Time.deltaTime;
         }
-        else if (remainingTime <= 10)
+        else if (remainingTime <= 60)
         {
             timerText.color = Color.red;
             remainingTime -= Time.deltaTime;
