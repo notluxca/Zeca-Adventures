@@ -6,10 +6,10 @@ using UnityEngine;
 public class npcHandler : MonoBehaviour
 {
     public Transform seatPosition;
-    public Transform dropPosition;
+    public GameObject dropPosition;
     public Vector3 seatOffset;
+    public GameObject npcOnCarry;
     public bool carryingNpc;
-    private GameObject npcOnCarry;
 
     
     
@@ -25,12 +25,8 @@ public class npcHandler : MonoBehaviour
         }
     }
 
-
-
     private void carryNpc(GameObject npc){
-            
             npc.transform.position = seatPosition.position + seatOffset;
-        
     }
 
     private void getNpc(GameObject npc){
@@ -42,9 +38,15 @@ public class npcHandler : MonoBehaviour
     private void dropNpc(){
         // get npc inside the school
         if(carryingNpc){
+            
+            // find a free position, drop the npc in
             npcOnCarry.transform.position = dropPosition.transform.position;
+            // makes the npc not interectable (not the best aproach)
+            Destroy(npcOnCarry.GetComponent<BoxCollider>());
             // reset npc handler
+            npcOnCarry = null;
             carryingNpc = false;
+
         }
 
     }
