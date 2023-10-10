@@ -6,13 +6,21 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
+    
+    // camera Handling variables
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject enchente;
+    [SerializeField] GameObject cameraSpot;
 
-    [SerializeField] GameObject _endingSceneTransition;
+    [SerializeField] GameObject blackBackground;
+    [SerializeField] GameObject gameOverText;
 
     bool gameIsOver = false;
     public float menuDelay = 1f;
 
-    
+    private void Start() {
+
+    }
     public void GameOver()
     {
         if(gameIsOver==false)
@@ -26,25 +34,28 @@ public class GameManager : MonoBehaviour
     IEnumerator gameOverSequence()
     {
 
-        print("hello bitch");
         yield return new WaitForSeconds(.1f);
-        _endingSceneTransition.SetActive(true);
-        
-        // 
+        FindObjectOfType<Camera>().GetComponent<followPlayer>();
+        enchente.SetActive(true);
+        mainCamera.GetComponent<followPlayer>().smoothTime = 1;
+        mainCamera.GetComponent<followPlayer>().target = cameraSpot.transform;
+         
         //load game over pannel
+        yield return new WaitForSeconds(10f);
+        blackBackground.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+        gameOverText.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
+
         // SceneManager.LoadScene("GameOver");
+        // fade image to black before game goes back to startScene
 
 
 
-    // fade image to black before game goes back to startScene
-    // Color c = renderer.material.color;
-    // for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
-    // {
-    //     c.a = alpha;
-    //     renderer.material.color = c;
-    //     yield return new WaitForSeconds(.1f);
-    // }
-    }
+
+        }
 
 
 }

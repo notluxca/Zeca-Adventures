@@ -5,9 +5,10 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
+
+    
     [SerializeField] TextMeshProUGUI timerText;
     public float remainingTime;
-    
 
     void Update()
     {

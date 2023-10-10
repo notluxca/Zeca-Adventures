@@ -5,7 +5,6 @@ public class followPlayer : MonoBehaviour
     public Transform target;             // The target to follow (the player in this case)
     public float smoothTime = 0.3f;     // The smoothness factor for camera movement
     public Vector3 offset;              // The offset between the camera and the target
-
     private Vector3 velocity;           // Velocity used by SmoothDamp
 
     void FixedUpdate()
