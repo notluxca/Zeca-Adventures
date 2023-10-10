@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class fuelHandler : MonoBehaviour
 {
+    [SerializeField] GameManager manager;
     [SerializeField] bool useFuelSystem;
     [SerializeField] Slider slider;
     
@@ -42,6 +43,7 @@ public class fuelHandler : MonoBehaviour
                 }
                 if(fuel <= 0){
                     canDrive = false;
+                    manager.GameOver();
                 }
         }        
         }

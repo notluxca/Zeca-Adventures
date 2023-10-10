@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         // StartCoroutine("winSequence"); // debug
+        Application.targetFrameRate = 60;
     }
 
     public void Win(){
@@ -34,6 +35,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine("winSequence");
     }
 
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.P)){
+            StartCoroutine("winSequence");
+        }
+        if(Input.GetKeyDown(KeyCode.O)){
+            StartCoroutine("gameOverSequence");
+        }
+    }
 
     public void GameOver()
     {
