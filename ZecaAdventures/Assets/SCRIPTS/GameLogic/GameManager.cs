@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(0);
         // destroy timer script so game wont load lose sequence after the win
-
         }
 
 
