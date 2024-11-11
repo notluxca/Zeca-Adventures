@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
       public int maxSpeed = 90; //The maximum speed that the car can reach in km/h.
       
       public int maxReverseSpeed = 45; //The maximum speed that the car can reach while going on reverse in km/h.
-      public int accelerationMultiplier = 2; // How fast the car can accelerate. 1 is a slow acceleration and 10 is the fastest.
+      public int accelerationMultiplier = 2;
       public int maxSteeringAngle = 27; // The maximum angle that the tires can reach while rotating the steering wheel.
       public float steeringSpeed = 0.5f; // How fast the steering wheel turns.
       public int brakeForce = 350; // The strength of the wheel brakes.
