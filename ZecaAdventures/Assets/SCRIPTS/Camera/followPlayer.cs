@@ -9,7 +9,7 @@ public class followPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Calculate the target position for the camera (only considering "x" and "z" axes)
+        // Calculate the target position for the camera (only considering "x" and "z" axes of movement)
         Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z) + offset;
 
         // Use SmoothDamp to smoothly interpolate between the current camera position and the target position
