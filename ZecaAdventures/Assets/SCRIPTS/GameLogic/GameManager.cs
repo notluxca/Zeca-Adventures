@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void Win(){
         Debug.Log("Game Won");
+Debug.Log("Game Won");
         StartCoroutine("winSequence");
     }
 
